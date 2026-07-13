@@ -61,6 +61,10 @@ class MatchRunner:
         6. return the match result.
     """
 
+    # If no configuration is provided, use standard Tic-Tac-Toe.
+    # So runner = MatchRunner() creates a 3x3 Tic-Tac-Toe game.
+    # While runner = MatchRunner(rows=5, cols=5, win_length=4,) - sets a 5x5 game. With 4 win length
+
     rows: int = 3
     cols: int = 3
     win_length: int = 3
@@ -88,6 +92,8 @@ class MatchRunner:
 
         move_history: list[Move] = []
 
+        # Main loop: while game has not finished, do...
+
         while not state.is_terminal():
             # Select the agent belonging to the player whose turn it is.
             if state.player_to_move == Mark.X:
@@ -99,7 +105,7 @@ class MatchRunner:
             # the move it wants to play.
             move = current_agent.choose_move(state, rng)
 
-            # MatchRunner verifies the response even though a correct agent
+            # Additional check: MatchRunner verifies the return even though a correct agent
             # should only return legal moves. This catches agent bugs early.
             if not state.is_legal_move(move):
                 raise ValueError(
@@ -107,7 +113,7 @@ class MatchRunner:
                     f"illegal move ({move.row}, {move.col})."
                 )
 
-            move_history.append(move)
+            move_history.append(move) # a move is added to the history, and a new immutable state is created
             state = state.apply_move(move)
 
         return MatchResult(

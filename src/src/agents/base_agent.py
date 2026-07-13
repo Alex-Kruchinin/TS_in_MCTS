@@ -21,4 +21,4 @@ class Agent(Protocol):
         rng: Random,
     ) -> Move:
         """Choose and return one legal move for the supplied state."""
-
+        ...

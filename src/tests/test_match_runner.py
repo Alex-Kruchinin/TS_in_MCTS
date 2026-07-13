@@ -46,6 +46,7 @@ def test_match_runner_alternates_agents_until_x_wins() -> None:
 
     result = runner.play(agent_x=agent_x, agent_o=agent_o, seed=7)
 
+    # assert means: This condition must be true. If it is false, the test fails.
     assert result.winner == Mark.X
     assert not result.is_draw
     assert result.number_of_moves == 5

@@ -317,7 +317,7 @@ class TicTacToeState:
         """
         Return True when the game has ended with a win or a draw.
 
-        MCTS will use this during selection and simulation to know when it
+        MCTS uses this during selection and simulation to know when it
         must stop moving through or playing out a state.
         """
 
