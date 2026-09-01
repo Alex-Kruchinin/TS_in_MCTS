@@ -1,0 +1,38 @@
+
+============================================================
+FINAL SUMMARY
+============================================================
+Experiment: 08_classical_thompson_vs_classical_uct
+Board: 6 x 6
+Simulations per move: 200
+Games: 100
+
+RESULTS
+Thompson wins: 38
+UCT wins:      60
+Draws:         2
+
+Thompson win rate: 38.00%
+95% Wilson CI: 29.10% to 47.79%
+Thompson score rate (draw = 0.5): 39.00%
+
+PLAYER ORDER
+Thompson as BLACK: 22/50 wins (44.00%)
+Thompson as WHITE: 16/50 wins (32.00%)
+
+GAME STATISTICS
+Average Thompson discs: 16.41
+Average UCT discs:      19.46
+Average disc difference (TS - UCT): -3.05
+Average actions/game: 32.57
+Median actions/game: 32.00
+Average passes/game: 0.70
+
+COMPUTATIONAL COST
+Average complete match runtime: 13.059 s
+Thompson avg search time/decision: 0.403691 s
+UCT avg search time/decision:      0.397906 s
+Thompson total search time: 656.805 s
+UCT total search time:      648.586 s
+Total experiment runtime:   1305.951 s
+============================================================

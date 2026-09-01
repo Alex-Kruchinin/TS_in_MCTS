@@ -1,0 +1,3 @@
+variant,agent_name,completed_games,wins,draws,losses,win_rate,draw_rate,loss_rate,score_rate,ci95_low,ci95_high,win_rate_black,win_rate_white,avg_disc_difference,avg_runtime_seconds,avg_actions,avg_tested_seconds_per_decision,benchmark_profile,benchmark_mistake_probability
+enhanced_uct,Enhanced UCT-MCTS,100,87,1,12,0.87,0.01,0.12,0.875,0.7901947810519012,0.9224290614158575,0.94,0.8,11.86,42.974346632999996,32.86,2.59486460798,medium,0.0
+enhanced_thompson,Enhanced Thompson-MCTS,100,91,0,9,0.91,0.0,0.09,0.91,0.8377362530335634,0.9519280048361151,0.92,0.9,11.24,36.878899308,32.95,2.23263008345,medium,0.0

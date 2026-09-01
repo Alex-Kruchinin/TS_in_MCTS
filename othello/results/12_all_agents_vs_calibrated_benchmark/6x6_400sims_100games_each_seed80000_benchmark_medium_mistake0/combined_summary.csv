@@ -1,0 +1,5 @@
+variant;agent_name;completed_games;wins;draws;losses;win_rate;draw_rate;loss_rate;score_rate;ci95_low;ci95_high;win_rate_black;win_rate_white;avg_disc_difference;avg_runtime_seconds;avg_actions;avg_tested_seconds_per_decision;benchmark_profile;benchmark_mistake_probability
+classical_uct;Classical UCT-MCTS;100;73;2;25;0.73;0.02;0.25;0.74;0.635676998;0.807305391;0.6;0.86;2.14;14.32619884;32.33;0.889944792;medium;0
+classical_thompson;Classical Thompson-MCTS;100;58;8;34;0.58;0.08;0.34;0.62;0.48206308;0.672017751;0.56;0.6;-0.52;12.94329199;32.58;0.797549269;medium;0
+enhanced_uct;Enhanced UCT-MCTS;100;87;1;12;0.87;0.01;0.12;0.875;0.790194781;0.922429061;0.94;0.8;11.86;42.97434663;32.86;2.594864608;medium;0
+enhanced_thompson;Enhanced Thompson-MCTS;100;91;0;9;0.91;0;0.09;0.91;0.837736253;0.951928005;0.92;0.9;11.24;36.87889931;32.95;2.232630083;medium;0

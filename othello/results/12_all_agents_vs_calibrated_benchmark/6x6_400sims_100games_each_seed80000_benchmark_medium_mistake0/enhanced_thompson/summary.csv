@@ -1,0 +1,21 @@
+metric,value
+variant,enhanced_thompson
+agent_name,Enhanced Thompson-MCTS
+benchmark_profile,medium
+benchmark_mistake_probability,0.0
+completed_games,100
+wins,91
+draws,0
+losses,9
+win_rate,0.91
+draw_rate,0.0
+loss_rate,0.09
+score_rate,0.91
+ci95_low,0.8377362530335634
+ci95_high,0.9519280048361151
+win_rate_black,0.92
+win_rate_white,0.9
+avg_disc_difference,11.24
+avg_runtime_seconds,36.878899308
+avg_actions,32.95
+avg_tested_seconds_per_decision,2.23263008345

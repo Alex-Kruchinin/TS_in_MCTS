@@ -1,0 +1,21 @@
+metric,value
+variant,enhanced_uct
+agent_name,Enhanced UCT-MCTS
+benchmark_profile,medium
+benchmark_mistake_probability,0.0
+completed_games,100
+wins,87
+draws,1
+losses,12
+win_rate,0.87
+draw_rate,0.01
+loss_rate,0.12
+score_rate,0.875
+ci95_low,0.7901947810519012
+ci95_high,0.9224290614158575
+win_rate_black,0.94
+win_rate_white,0.8
+avg_disc_difference,11.86
+avg_runtime_seconds,42.974346632999996
+avg_actions,32.86
+avg_tested_seconds_per_decision,2.59486460798

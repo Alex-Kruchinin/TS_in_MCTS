@@ -1,0 +1,9 @@
+ALL MCTS AGENTS VS CALIBRATED RULE-BASED BENCHMARK
+================================================================================
+Benchmark profile: medium
+Benchmark mistake probability: 0.0
+
+Classical UCT-MCTS: 73W 2D 25L | win=73.0% | draw=2.0% | disc diff=+2.14
+Classical Thompson-MCTS: 58W 8D 34L | win=58.0% | draw=8.0% | disc diff=-0.52
+Enhanced UCT-MCTS: 87W 1D 12L | win=87.0% | draw=1.0% | disc diff=+11.86
+Enhanced Thompson-MCTS: 91W 0D 9L | win=91.0% | draw=0.0% | disc diff=+11.24

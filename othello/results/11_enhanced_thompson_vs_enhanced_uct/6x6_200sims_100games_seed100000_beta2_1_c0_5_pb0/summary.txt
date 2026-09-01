@@ -1,0 +1,40 @@
+
+============================================================
+CURRENT / FINAL SUMMARY
+============================================================
+Experiment: 11_enhanced_thompson_vs_enhanced_uct
+Board: 6 x 6
+Simulations per move: 200
+Games: 100/100
+
+RESULTS
+Enhanced Thompson wins: 42
+Enhanced UCT wins:      50
+Draws:                  8
+
+Enhanced Thompson win rate: 42.0%
+Enhanced UCT win rate:      50.0%
+Draw rate:                  8.0%
+
+Enhanced Thompson score rate: 46.0%
+Enhanced UCT score rate:      54.0%
+
+Thompson 95% Wilson win CI: 32.8% to 51.8%
+UCT 95% Wilson win CI:      40.4% to 59.6%
+
+THOMPSON PLAYER ORDER
+As BLACK: 21/50 wins (42.0%)
+As WHITE: 21/50 wins (42.0%)
+
+GAME STATISTICS
+Average Thompson discs: 17.17
+Average UCT discs:      18.71
+Average disc difference (TS - UCT): -1.54
+Average actions/game: 32.50
+Average passes/game: 0.62
+
+COMPUTATIONAL COST
+Average complete match runtime: 78.675 s
+Thompson avg search time/decision: 2.435816 s
+UCT avg search time/decision:      2.405081 s
+============================================================

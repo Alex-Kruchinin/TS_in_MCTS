@@ -1,0 +1,21 @@
+metric,value
+variant,classical_uct
+agent_name,Classical UCT-MCTS
+benchmark_profile,medium
+benchmark_mistake_probability,0.0
+completed_games,100
+wins,73
+draws,2
+losses,25
+win_rate,0.73
+draw_rate,0.02
+loss_rate,0.25
+score_rate,0.74
+ci95_low,0.6356769977376873
+ci95_high,0.8073053908233518
+win_rate_black,0.6
+win_rate_white,0.86
+avg_disc_difference,2.14
+avg_runtime_seconds,14.326198842000002
+avg_actions,32.33
+avg_tested_seconds_per_decision,0.88994479232
