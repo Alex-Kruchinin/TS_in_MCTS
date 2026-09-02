@@ -1,74 +1,126 @@
-Thompson Sampling in Monte Carlo Tree Search
+# Evaluating UCT and Thompson Sampling under Limited Simulation Budgets: The Effect of Domain-Informed Heuristics in Board Games
 
-This repository contains the implementation and experimental work for an MSc dissertation investigating the use of Thompson Sampling as a tree-selection strategy in Monte Carlo Tree Search.
+This repository contains the code and experiments for an MSc dissertation
+investigating Thompson Sampling as an alternative tree-selection method in
+Monte Carlo Tree Search (MCTS).
 
-Monte Carlo Tree Search, or MCTS, is a heuristic search algorithm commonly used for sequential decision-making problems, particularly in games with large search spaces. Standard MCTS typically uses the Upper Confidence Bound applied to Trees, or UCT, during the selection stage to balance exploration of less-visited actions with exploitation of actions that have previously produced strong results.
+## UCT and Thompson Sampling
 
-This project investigates whether Thompson Sampling can provide an effective alternative to UCT. Instead of selecting actions using a deterministic confidence-bound formula, Thompson Sampling models the uncertainty associated with each action and selects actions by sampling from probability distributions representing their estimated performance.
+MCTS builds a search tree through four repeated stages: 
+1) selection 
+2) expansion 
+3) simulation
+4) backpropagation
 
-The two approaches will be evaluated across multiple games, board configurations, opponent types, and computational budgets.
+This project focuses compares two alternative selection policies, where the search decides which existing child node to visit next.
+And how heuristically guided expansion and simulation affects the results and quality of selection.
 
-Research Aim
+UCT selects the child with the largest confidence-bound score:
 
-The main aim of this project is to investigate the effectiveness of Thompson Sampling when used within Monte Carlo Tree Search.
+```text
+mean reward + C * sqrt(ln(parent visits) / child visits)
+```
 
-The project will compare Thompson Sampling-based MCTS with standard UCT-based MCTS in terms of:
+The mean reward favours moves that have performed well, while the exploration
+term favours moves that have received fewer visits. The exploration constant
+`C` controls the balance between these two parts.
 
-playing strength;
-win, loss, and draw rates;
-computational efficiency;
-convergence behaviour;
-robustness across different games;
-performance under different simulation budgets;
-performance against opponents of varying difficulty.
-Research Questions
+Thompson Sampling represents the estimated value of each child with a Beta
+distribution. It draws one sample from every child's distribution and selects
+the child with the largest sample:
 
-The project is guided by the following research questions:
+```text
+theta_i ~ Beta(alpha_i, beta_i)
+```
 
-How does Thompson Sampling-based MCTS compare with standard UCT-based MCTS in terms of playing performance?
-How does the number of MCTS simulations affect the performance of each selection strategy?
-Does Thompson Sampling perform consistently across games with different structures and branching factors?
-How does each MCTS variant perform against opponents of different strengths?
-How do board size and game complexity affect the relative performance of Thompson Sampling and UCT?
-Games
+Successful results (wins) increase `alpha`, while unsuccessful results (loses) increase
+`beta`; a draw contributes equally to both. As more results are observed, the
+distribution becomes more concentrated. This balances exploration and
+exploitation through posterior uncertainty rather than an explicit UCT bonus.
 
-The project currently focuses on the following games.
+Both methods therefore solve the same selection problem in different ways:
+UCT uses a confidence-bound formula, whereas Thompson Sampling uses
+probability sampling.
 
-Scalable Tic-Tac-Toe
+## The code tests:
 
-A configurable version of Tic-Tac-Toe will be implemented in which the board dimensions and winning-line requirements can be changed.
+- classical Thompson MCTS against classical UCT-MCTS
+- enhanced (heuristically guided) Thompson MCTS against enhanced UCT-MCTS
+- each agent against rule-based benchmark opponents
+- the effect of the UCT exploration constant and Thompson Beta prior
+- performance under controlled simulation budgets
+- win, loss, draw, score, runtime, and move-count results
 
-Possible configurations include:
+The principal experiments use 7 x 7 Tic-Tac-Toe with four marks required to
+win, and 6 x 6 Othello. Both game implementations also support configurable
+board sizes.
 
-standard (3 \times 3) Tic-Tac-Toe;
-larger square boards;
-configurable numbers of consecutive marks required to win.
+## Fair comparisons
 
-Using multiple board sizes allows the complexity and branching factor of the game to be varied systematically.
+The main experiments use equal simulation budgets, fixed random seeds, fresh
+agent instances, and alternating starting sides or colours. Results are saved
+per game so that overall and side-specific performance can be examined.
 
-Othello
+In the classical head-to-head experiments, expansion, simulation,
+backpropagation, rewards, and final-action selection are kept the same. The
+main experimental difference is whether tree selection uses UCT or Thompson
+Sampling.
 
-Othello, also known as Reversi, will be used as a more strategically complex game with:
+The enhanced comparisons give both agents the same game-specific search
+features where possible. UCT progressive bias can be set to zero when the goal
+is to isolate the selection-policy difference.
 
-changing board control;
-positional strategy;
-variable legal moves;
-pass actions;
-a larger and more complex search space.
+## Repository structure
 
-The use of both Tic-Tac-Toe and Othello allows the algorithms to be compared across games with different strategic properties.
+```text
+COMP66060_Masters_Project/
+│
+├── tic-tac-toe/   # Scalable Tic-Tac-Toe implementation and experiments
+├── othello/       # Scalable Othello implementation and experiments
+└── README.md      # Project overview
+```
 
-Monte Carlo Tree Search
+Each game is self-contained and has its own README with more detailed information.
 
-A standard MCTS iteration consists of four stages:
+## Tic-Tac-Toe experiments
 
-Selection
-Starting from the root node, the algorithm repeatedly selects child nodes until it reaches a node that is not fully expanded or represents a terminal state.
-Expansion
-One or more previously unexplored actions are added to the search tree.
-Simulation
-A game is simulated from the selected state until a terminal state or predefined stopping condition is reached.
-Backpropagation
-The simulation result is propagated back through the visited nodes to update their statistics.
+The main Tic-Tac-Toe experiments are in:
 
-This project primarily investigates modifications to the selection stage.
+```text
+tic-tac-toe/src/experiments/win_rate_by_agent/
+```
+
+Important files include:
+
+- `baseline_thompson_vs_baseline_uct.py` for the classical comparison;
+- `enhanced_thompson_vs_enhanced_uct.py` for the enhanced comparison;
+- `run_all_agents_vs_tactical.py` for evaluating all four MCTS agents against
+  the tactical benchmark;
+- `uct_c_sweep_vs_weak_tactical.py` for testing UCT exploration constants;
+- `thompson_beta_sweep_vs_weak_tactical.py` for testing Thompson Beta priors;
+- `benchmark_settings.py` for the shared board, agent, seed, and experiment
+  settings.
+
+
+## Othello experiments
+
+The main Othello experiments are in:
+
+```text
+othello/experiments/
+```
+
+Important files include:
+
+- `08_classical_thompson_vs_classical_uct.py` for the classical comparison;
+- `09_classical_uct_c_sweep_vs_weak_tactical.py` for the UCT parameter sweep;
+- `10_classical_thompson_beta_prior_sweep_vs_weak_tactical.py` for the
+  Thompson-prior sweep;
+- `11_enhanced_thompson_vs_enhanced_uct.py` for the enhanced comparison;
+- `12_all_agents_vs_calibrated_benchmark.py` for comparison against the
+  rule-based benchmark;
+- `run_enhanced_parameter_study.py` for enhanced-agent ablation and parameter
+  studies.
+
+
+Python 3.11 or later is recommended.
