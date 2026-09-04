@@ -12,8 +12,8 @@ MCTS builds a search tree through four repeated stages:
 3) simulation
 4) backpropagation
 
-This project focuses compares two alternative selection policies, where the search decides which existing child node to visit next.
-And how heuristically guided expansion and simulation affects the results and quality of selection.
+This project focuse is to compare two alternative selection policies (UCT and Thompson Sampling), where the search decides which existing child node to visit next.
+And how heuristically guided expansion and simulation affects the results and quality of the selection.
 
 UCT selects the child with the largest confidence-bound score:
 
@@ -36,7 +36,7 @@ theta_i ~ Beta(alpha_i, beta_i)
 Successful results (wins) increase `alpha`, while unsuccessful results (loses) increase
 `beta`; a draw contributes equally to both. As more results are observed, the
 distribution becomes more concentrated. This balances exploration and
-exploitation through posterior uncertainty rather than an explicit UCT bonus.
+exploitation through posterior uncertainty rather than a UCT bonus.
 
 Both methods therefore solve the same selection problem in different ways:
 UCT uses a confidence-bound formula, whereas Thompson Sampling uses
@@ -45,17 +45,18 @@ probability sampling.
 ## The code tests:
 
 - classical Thompson MCTS against classical UCT-MCTS
-- enhanced (heuristically guided) Thompson MCTS against enhanced UCT-MCTS
-- each agent against rule-based benchmark opponents
-- the effect of the UCT exploration constant and Thompson Beta prior
+- enhanced (heuristically guided) Thompson MCTS against enhanced (heuristically guided) UCT-MCTS
+- all 4 agent variants against rule-based benchmark opponents
+- the effect of the UCT exploration constant `C` and Thompson Beta prior
 - performance under controlled simulation budgets
 - win, loss, draw, score, runtime, and move-count results
 
-The principal experiments use 7 x 7 Tic-Tac-Toe with four marks required to
-win, and 6 x 6 Othello. Both game implementations also support configurable
-board sizes.
+The principal experiments use:
 
-## Fair comparisons
+7 x 7 Tic-Tac-Toe with four marks required to win.
+6 x 6 Othello. Both game implementations also support configurable board sizes.
+
+## Fair comparison
 
 The main experiments use equal simulation budgets, fixed random seeds, fresh
 agent instances, and alternating starting sides or colours. Results are saved
@@ -68,7 +69,7 @@ Sampling.
 
 The enhanced comparisons give both agents the same game-specific search
 features where possible. UCT progressive bias can be set to zero when the goal
-is to isolate the selection-policy difference.
+is to compare the original selection-policy only.
 
 ## Repository structure
 
@@ -80,7 +81,7 @@ COMP66060_Masters_Project/
 └── README.md      # Project overview
 ```
 
-Each game is self-contained and has its own README with more detailed information.
+Each game is self-contained and has its own README with more information.
 
 ## Tic-Tac-Toe experiments
 
